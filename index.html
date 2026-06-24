@@ -1,3 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Cutie Pie ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Poppins,sans-serif;
+overflow:hidden;
+height:100vh;
+}
+
+.bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+url('photo.jpg');
+background-size:cover;
+background-position:center;
+z-index:-1;
+}
+
+.hero{
+text-align:center;
+color:white;
+padding-top:40px;
+}
+
+.hero h1{
+font-family:'Dancing Script',cursive;
+font-size:70px;
+text-shadow:0 0 20px pink;
+}
+
+.subtitle{
+font-size:18px;
+margin-top:10px;
+}
+
+.card{
+width:90%;
+max-width:420px;
+margin:20px auto;
+padding:20px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(12px);
+border-radius:25px;
+border:1px solid rgba(255,255,255,.25);
+}
+
+#counter{
+font-size:20px;
+font-weight:600;
+}
+
+#message{
+margin-top:15px;
+font-size:18px;
+color:#ffe3ef;
+min-height:60px;
+}
+
+.heart{
+position:absolute;
+font-size:40px;
+cursor:pointer;
+animation:pulse 1.5s infinite;
+z-index:5;
+}
+
+@keyframes pulse{
+50%{
+transform:scale(1.3);
+}
+}
+
+#letter{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+width:90%;
+max-width:700px;
+padding:30px;
+border-radius:25px;
+box-shadow:0 0 40px rgba(255,0,100,.3);
+overflow:auto;
+max-height:85vh;
+z-index:50;
+}
+
+#letter h2{
+color:#ff4f8b;
+text-align:center;
+margin-bottom:20px;
+}
+
+#letter p{
+line-height:1.8;
+font-size:18px;
+color:#444;
+margin-bottom:10px;
+}
+
+.signature{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+color:#ff4f8b;
+margin-top:20px;
+}
+
+.float{
+position:absolute;
+animation:fly 6s linear infinite;
+pointer-events:none;
+z-index:99;
+}
+
+@keyframes fly{
+from{
+transform:translateY(100vh);
+opacity:1;
+}
+to{
+transform:translateY(-150px);
+opacity:0;
+}
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+.card{
+width:95%;
+}
+
+#letter{
+padding:20px;
+}
+
+}
+
+</style>
+
+</head>
+
 <body>
 
 <div class="bg"></div>
@@ -7,24 +175,24 @@
 <h1>For My Cutie Pie ❤️</h1>
 
 <p class="subtitle">
-Every click reveals a little piece of my heart...
+Every heart hides a reason why I love you ❤️
 </p>
 
-<div class="glass-card">
+<div class="card">
 
-<div id="counter">❤️ 0 / 12 Hearts Found</div>
+<div id="counter">
+❤️ 0 / 12 Hearts Found
+</div>
 
 <div id="message">
-Click a heart, my love ❤️
+Find all the hearts, my love ❤️
 </div>
 
 </div>
 
 </div>
 
-<div id="finalLetter" class="hidden">
-
-<div class="letter-box">
+<div id="letter">
 
 <h2>My Dearest Simran ❤️</h2>
 
@@ -50,6 +218,9 @@ Your smile brightens my world.
 Your eyes are beautiful.
 Your voice calms my heart.
 Your hair is beautiful.
+</p>
+
+<p>
 But the most beautiful thing about you...
 is your heart.
 </p>
@@ -61,19 +232,21 @@ My heart.
 My whole world.
 </p>
 
-<h3>Forever Yours ❤️</h3>
+<p>
+Forever and always ❤️
+</p>
 
-<h2>Arsh ❤️</h2>
-
+<div class="signature">
+Arsh ❤️
 </div>
 
 </div>
 
 <script>
 
-const compliments = [
+const messages = [
 
-"Your smile can fix my worst day ❤️",
+"Your smile can brighten my worst day ❤️",
 "Your eyes are my favourite place ❤️",
 "Your voice is my comfort ❤️",
 "Your hair is beautiful ❤️",
@@ -92,180 +265,76 @@ let found = 0;
 
 for(let i=0;i<12;i++){
 
-let heart=document.createElement('div');
+let heart=document.createElement("div");
 
-heart.className='heart';
+heart.className="heart";
 
-heart.innerHTML='❤️';
+heart.innerHTML="❤️";
 
-heart.style.left=Math.random()*85+'vw';
-
-heart.style.top=(15+Math.random()*70)+'vh';
+heart.style.left=Math.random()*90+"vw";
+heart.style.top=(20+Math.random()*65)+"vh";
 
 heart.onclick=function(){
 
-document.getElementById('message').innerHTML=compliments[i];
+document.getElementById("message").innerHTML=
+messages[i];
 
 heart.remove();
 
 found++;
 
-document.getElementById('counter').innerHTML=
-'❤️ '+found+' / 12 Hearts Found';
+document.getElementById("counter").innerHTML=
+"❤️ "+found+" / 12 Hearts Found";
 
 if(found===12){
 
-document.getElementById('finalLetter')
-.classList.remove('hidden');
+document.getElementById("letter").style.display="block";
 
-createConfetti();
+for(let j=0;j<150;j++){
+
+let h=document.createElement("div");
+
+h.className="float";
+
+h.innerHTML=Math.random()>0.5?"❤️":"✨";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(h);
 
 }
 
 }
+
+};
 
 document.body.appendChild(heart);
 
 }
 
-function createConfetti(){
+setInterval(()=>{
 
-for(let i=0;i<150;i++){
+let h=document.createElement("div");
 
-let e=document.createElement('div');
+h.className="float";
 
-e.innerHTML=Math.random()>0.5?'❤️':'✨';
+h.innerHTML="💖";
 
-e.className='confetti';
+h.style.left=Math.random()*100+"vw";
 
-e.style.left=Math.random()*100+'vw';
+h.style.fontSize=(20+Math.random()*20)+"px";
 
-e.style.animationDelay=Math.random()*3+'s';
+document.body.appendChild(h);
 
-document.body.appendChild(e);
+setTimeout(()=>{
+h.remove();
+},6000);
 
-}
-
-}
+},1000);
 
 </script>
 
-<style>
-
-body{
-margin:0;
-overflow:hidden;
-font-family:Poppins,sans-serif;
-}
-
-.bg{
-position:fixed;
-inset:0;
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-url('photo.jpg');
-background-size:cover;
-background-position:center;
-}
-
-.hero{
-position:relative;
-z-index:2;
-text-align:center;
-padding-top:60px;
-color:white;
-}
-
-.hero h1{
-font-size:70px;
-font-family:'Dancing Script',cursive;
-text-shadow:0 0 30px pink;
-}
-
-.subtitle{
-font-size:20px;
-}
-
-.glass-card{
-width:350px;
-margin:30px auto;
-padding:25px;
-border-radius:25px;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,.3);
-}
-
-#message{
-margin-top:20px;
-font-size:20px;
-color:#ffe3ef;
-}
-
-.heart{
-position:absolute;
-font-size:40px;
-cursor:pointer;
-animation:pulse 1.5s infinite;
-z-index:5;
-}
-
-@keyframes pulse{
-50%{transform:scale(1.25);}
-}
-
-.hidden{
-display:none;
-}
-
-#finalLetter{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.8);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:50;
-}
-
-.letter-box{
-background:white;
-width:90%;
-max-width:700px;
-padding:35px;
-border-radius:30px;
-text-align:center;
-}
-
-.letter-box h2{
-color:#ff4f8b;
-}
-
-.confetti{
-position:absolute;
-top:-50px;
-font-size:30px;
-animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh);
-}
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:42px;
-}
-
-.glass-card{
-width:90%;
-}
-
-}
-
-</style>
-
 </body>
+</html>
