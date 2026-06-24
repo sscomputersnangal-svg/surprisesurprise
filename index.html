@@ -1,58 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Cutie Pie ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:url('photo.jpg') center center/cover no-repeat;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(3px);
+}
+
+.header{
+text-align:center;
+color:white;
+padding-top:25px;
+}
+
+.header h1{
+font-size:3rem;
+text-shadow:0 0 20px pink;
+}
+
+.counter{
+margin-top:10px;
+font-size:1.2rem;
+}
+
+.message{
+margin-top:15px;
+font-size:1.2rem;
+color:#ffdbe7;
+padding:0 20px;
+}
+
+.heart{
+position:absolute;
+font-size:35px;
+cursor:pointer;
+transition:.3s;
+animation:pulse 1.5s infinite;
+}
+
+.heart:hover{
+transform:scale(1.3);
+}
+
+@keyframes pulse{
+50%{transform:scale(1.2);}
+}
+
+.float{
+position:absolute;
+color:pink;
+animation:fly 6s linear infinite;
+pointer-events:none;
+}
+
+@keyframes fly{
+from{
+transform:translateY(100vh);
+opacity:1;
+}
+to{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+#letter{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+width:90%;
+max-width:700px;
+padding:30px;
+border-radius:25px;
+box-shadow:0 0 40px rgba(255,0,100,.4);
+overflow:auto;
+max-height:80vh;
+}
+
+#letter h2{
+color:#ff4d88;
+margin-bottom:20px;
+}
+
+#letter p{
+line-height:1.8;
+font-size:18px;
+color:#444;
+}
+
+.signature{
+margin-top:20px;
+font-weight:bold;
+font-size:24px;
+color:#ff4d88;
+}
+
+.unlock{
+margin-top:15px;
+font-size:14px;
+color:#fff;
+}
+
+@media(max-width:768px){
+.header h1{
+font-size:2rem;
+}
+}
+</style>
+
+</head>
+
 <body>
 
-<div id="overlay">
-    <h1>For My Cutie Pie ❤️</h1>
+<div class="overlay">
 
-    <div id="counter">
-        Hearts Found: <span id="count">0</span>/20
-    </div>
+<div class="header">
+<h1>❤️ For My Cutie Pie ❤️</h1>
 
-    <div id="message">
-        Find the hidden hearts ❤️
-    </div>
+<div class="counter">
+Hearts Found:
+<span id="count">0</span>/15
+</div>
 
-    <div id="finalLetter" class="hidden">
-        <h2>My Dearest Simran ❤️</h2>
+<div class="message" id="msg">
+Find all the hidden hearts, my love ❤️
+</div>
 
-        <p>
-        I know life feels heavy sometimes.
-        I know some days are harder than others.
-        But I want you to remember one thing...
-        </p>
+<div class="unlock">
+Every heart hides a reason why I love you.
+</div>
+</div>
 
-        <p>
-        I am always with you.
-        On good days.
-        On difficult days.
-        In every smile.
-        In every tear.
-        </p>
+<div id="letter">
+<h2>My Dearest Simran ❤️</h2>
 
-        <p>
-        Your eyes are beautiful.
-        Your smile is beautiful.
-        Your voice is beautiful.
-        Your hair is beautiful.
-        But more than all of that...
-        your heart is beautiful.
-        </p>
+<p>
+I know life feels heavy sometimes.
+I know some days are harder than others.
+But I want you to remember one thing...
+</p>
 
-        <p>
-        You are my cutie pie.
-        My love.
-        My heart.
-        My whole world.
-        </p>
+<p>
+I am always with you.
+On good days.
+On difficult days.
+In every smile.
+In every tear.
+In every victory.
+</p>
 
-        <h3>Forever Yours ❤️</h3>
+<p>
+Your eyes are beautiful.
+Your smile is beautiful.
+Your voice is beautiful.
+Your hair is beautiful.
+</p>
 
-        <h2>Arsh ❤️</h2>
-    </div>
+<p>
+But more than all of that...
+your heart is beautiful.
+</p>
+
+<p>
+You are my cutie pie.
+My love.
+My heart.
+My whole world.
+</p>
+
+<p>
+No matter where life takes us,
+I will keep holding your hand through every chapter.
+</p>
+
+<div class="signature">
+Forever Yours ❤️<br>
+Arsh ❤️
+</div>
+</div>
 
 </div>
 
-<div id="heartContainer"></div>
+<script>
 
-<script src="script.js"></script>
+const messages=[
+"Your smile can brighten my worst day ❤️",
+"Your eyes are my favourite place to get lost ❤️",
+"Your hair is absolutely beautiful ❤️",
+"Your voice brings me peace ❤️",
+"You are stronger than you think ❤️",
+"I am proud of you every day ❤️",
+"You make ordinary moments magical ❤️",
+"You are my safe place ❤️",
+"You are my sunshine ❤️",
+"You are my best friend ❤️",
+"You are beautiful inside and out ❤️",
+"You deserve all happiness ❤️",
+"You are my favourite person ❤️",
+"I choose you every day ❤️",
+"You are my whole world ❤️"
+];
+
+let found=0;
+
+for(let i=0;i<15;i++){
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*90+"vw";
+heart.style.top=(15+Math.random()*70)+"vh";
+
+heart.onclick=function(){
+
+document.getElementById("msg").innerHTML=
+messages[i];
+
+heart.remove();
+
+found++;
+
+document.getElementById("count").innerHTML=
+found;
+
+if(found===15){
+document.getElementById("letter").style.display="block";
+createCelebration();
+}
+};
+
+document.body.appendChild(heart);
+}
+
+function createCelebration(){
+
+for(let i=0;i<200;i++){
+
+let s=document.createElement("div");
+
+s.innerHTML=Math.random()>0.5?"❤️":"✨";
+
+s.className="float";
+
+s.style.left=Math.random()*100+"vw";
+s.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(s);
+}
+}
+
+setInterval(()=>{
+
+let h=document.createElement("div");
+
+h.className="float";
+
+h.innerHTML="💖";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*25)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.remove();
+},6000);
+
+},700);
+
+</script>
 
 </body>
+</html>
